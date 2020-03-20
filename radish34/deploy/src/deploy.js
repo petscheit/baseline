@@ -5,6 +5,7 @@ const Organization = require('./utils/organization');
 const Settings = require('./utils/settings');
 const { getWhisperIdentities } = require('./utils/identities');
 const { uploadVks } = require('./utils/vk');
+const { generateKeyPair } = require('./utils/babyjubjub-ecc');
 
 const addresses = {};
 
@@ -61,16 +62,30 @@ const register = async role => {
   const messengerKey = (await getWhisperIdentities())[role];
   organization = { ...organization, messengerKey };
 
+  organization.address = roleAddress;
+  if (!organization.zkpPublicKey) {
+    const { privateKey, publicKeyCompressed } = generateKeyPair();
+    organization.zkpPublicKey = publicKeyCompressed;
+    organization.zkpPrivateKey = privateKey;
+  }
+
   const { transactionHash } = await Organization.registerToOrgRegistry(
     role,
     addresses.OrgRegistry,
-    roleAddress,
+    organization.address,
     organization.name,
     organization.role,
     organization.messengerKey,
     organization.zkpPublicKey,
   );
   console.log(`✅  Registered ${role} in the OrgRegistry with tx hash:`, transactionHash);
+
+  if (transactionHash) {
+    Settings.setServerSettings(role, {
+      addresses,
+      organization,
+    });
+  }
 };
 
 const registerInterfaces = async role => {
@@ -109,8 +124,6 @@ const saveSettings = async role => {
 };
 
 const main = async () => {
-  const registerAll = process.env.MODE === 'register-all';
-
   await deployContracts('deployer');
   await assignManager('deployer');
   await setInterfaceImplementer('deployer');
