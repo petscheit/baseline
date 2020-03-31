@@ -70,7 +70,7 @@ The position is annual and chosen by popular vote of contributors who have had w
 
 ## New Stakeholders: March 19, 2020
 
-### [**Aztec**](https://www.aztecprotocol.com/)**,**  [**ConsenSys Health**](https://consensyshealth.com)**,**  [**Anyblock Analytics GmbH**](https://anyblockanalytics.com)**,**  [**Ocyan Cloud Technology LTD**](https://ocyan.com)**,**  [**Digital Scarcity**](http://digitalscarcity.io/)**,** Energy Web Foundation, The Graph, ShipChain, [Clear](https://www.clearx.io/)
+### [**Aztec**](https://www.aztecprotocol.com/)**,**  [**ConsenSys Health**](https://consensyshealth.com)**,**  [**Anyblock Analytics GmbH**](https://anyblockanalytics.com)**,**  [**Ocyan Cloud Technology LTD**](https://ocyan.com)**,**  [**Digital Scarcity**](http://digitalscarcity.io/)**,** Energy Web Foundation, [The Graph](https://github.com/ethereum-oasis/baseline/pull/thegraph.com), ShipChain, [Clear](https://www.clearx.io/)
 
 Stay tuned...more coming in all the time.
 
